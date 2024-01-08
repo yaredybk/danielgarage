@@ -4,31 +4,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Daniel garage: Expert vehicle maintenace, service, and painting, all under one roof.">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Daniel Garage</title>
     <link rel="stylesheet" href="./index.css">
 </head>
 
 <body>
-    <div class="head">
-        <img class="logo" src="./images/daniel_garage_logo_wide_border.jpeg" alt="daniel garage logo">
-    </div>
     <div id="hero">
-        <div class="comingsoon">
-            <span class="line"></span>
+        <!-- <img class="bg" src="./images/range_rover-min.jpg" alt="range rover image"> -->
+        <div class="head">
+            <img class="logo" src="./images/daniel_garage_logo_wide_border.jpeg" alt="daniel garage logo">
+            <button id="notification-btn" class="notification">
+                <img src="./images/notification_important.svg" alt="urgent">
+                <span>location change</span>
+            </button>
+        </div>
+        <div class="cooming">
             <h1>
                 Our new <em>website</em><br> is on its way.
             </h1>
-            <span class="line"></span>
         </div>
         <div class="desc">
             <h2>
-                Daniel garage: <br>Expert vehicle maintenace, service, and painting, all under one roof.
+                Daniel garage <br>vehicle maintenace, service and painting shop.
             </h2>
         </div>
+        <dialog id="notification-dialog">
+            <div class="title">
+                <h1>የአድራሻ ለውጥ (Address change) !</h1>
+            </div>
+            <div class="message">
+                <p>
+                    <a href="https://danielgarage.com.et">ዳኔኤል ጋራዥ</a> ከነበርንበት ወደ ወሰን በሚወስደው መንገድ ኮተቤ 02 ጤና ጣቢያ ፊት ለፊት ባለው ኮምፓውንድ ውስጥ የገባን መሆናችንን እንገልፃለን። <br>
+                </p>
+                <br>
+                <p>
+                    Please be informed of our relocation. <a href="https://danielgarage.com.et">Our garage</a> is now operating in a compound on the <b>road
+                        towards Wesen </b>, few blocks in front of <b>Kotebe 02 Health Center</b>.<br>
+                    <br>
+                </p>
+                <center>
+                    <img src="./images/location_message.jpg" alt="location change">
+                </center>
+                <h2>for more:</h2>
+                <ul>
+                    <li>+251931404545</li>
+                    <li>+251939494020</li>
+                    <li>danielgarage.com.et</li>
+                </ul>
+                <h2>location:</h2>
+                <span>
+                    9°01'51.4"N 38°49'39.8"E <br>
+                    google maps: <br>
+                    <a  href="https://goo.gl/maps/2kNzdYxzVoZQhRNA6">https://goo.gl/maps/2kNzdYxzVoZQhRNA6</a>
+                    <br>
+                    <br>
+                    <div class="iframe">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d492.5449173332902!2d38.82755802219372!3d9.030947455346148!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zOcKwMDEnNTEuNCJOIDM4wrA0OSczOS44IkU!5e0!3m2!1sen!2set!4v1704730518662!5m2!1sen!2set"
+                            width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+
+                </span>
+            </div>
+            <div class="close">
+                <button id="close-btn">
+                    Ok
+                </button>
+            </div>
+        </dialog>
     </div>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const notification = document.querySelector('#notification-btn');
+            const dialog = document.querySelector('#notification-dialog');
+            const modalwin = document.querySelector("#notification-dialog");
+            const closebtn = document.querySelector("#close-btn");
+            function popstatefunction(event) {
+                window.removeEventListener("popstate", popstatefunction);
+                if (event?.type != "popstate") return;
+                else window.history.go(-1);
+                dialog.close();
+            }
+            function closemodal() {
+                dialog.close();
+                popstatefunction("manually closed!");
+                dialog.classList.remove("open");
+                dialog.close();
+                return window.history.back();
+            }
+            function openmodal() {
+                let curloc = new URL(document.location.href);
+                curloc.searchParams.delete("pop");
+                curloc.searchParams.append("pop", "alert");
+                window.history.pushState(null, document.title, curloc);
+                dialog.showModal();
+                window.addEventListener("popstate", popstatefunction);
+                dialog.classList.add("open");
+            }
+            closebtn.addEventListener('click', () => {
+                closemodal();
+            })
+            modalwin.addEventListener('click', (e) => {
+                if (e.target.id == "notification-dialog") {
+                    closemodal();
+                }
+            })
+            notification.addEventListener('click', () => {
+                openmodal();
+            })
+            openmodal();
+        })
+    </script>
 </body>
 
 </html>
