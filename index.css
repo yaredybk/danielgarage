@@ -51,15 +51,14 @@ dialog{
     border-bottom-left-radius: 1rem;
     box-shadow: 0px 0px 20px 3px rgb(0, 0, 0);
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
 }
 dialog.open{
     opacity: 1;
-    transition: opacity 0.5s ease-in-out;
+    animation: slide-in 1s ease;
 }
 dialog::backdrop {
-    background-color: hsla(0, 2%, 64%, 0.776);
-    backdrop-filter: blur(1px);
+    background-color: hsla(0, 0%, 0%, 0.3);
+    /* backdrop-filter: blur(1px); */
 }
 div.title{
     background-color: rgb(255, 169, 169);
@@ -71,11 +70,13 @@ div.title{
 .title h1{
     margin: 0px;
 }
-
+div.message{
+    padding-bottom: 2rem;
+}
 dialog img{
     margin:  auto 0px;
     max-width: 30rem;
-    width: 100%;
+    max-height: 50vh;
 }
 dialog p{
     max-width: 30rem;
@@ -84,7 +85,9 @@ dialog p{
     padding: 0rem;
 }
 dialog button#close-btn{
-    position: fixed;
+    position: sticky;
+    bottom: 0.2rem;
+    float: right;
     background-color: rgb(171, 235, 34);
     box-shadow: 0px 0px 10px 1px black;
     color: darkgreen;
@@ -92,11 +95,27 @@ dialog button#close-btn{
     padding: 0.5rem 1.5rem;
     font-size: 1.3rem;
     border-radius: 0.5rem;
-    bottom: 1rem;
-    right: 1rem;
+}
+dialog ul{
+    display: grid;
+    gap: 0.5rem;
+    width: fit-content;
+}
+dialog li{
+    display:grid;
+    gap: 1rem;
+    grid-template-columns: 3fr 1fr;
+}
+dialog li a{
+    display: flex;
+}
+img.icon{
+    width: 1rem;
+    padding: 0px 3px;
+    vertical-align: middle;
 }
 div.iframe{
-    border:gray 0.5rem solid ;
+    border:gray 0.2rem solid ;
     overflow: auto;
     margin: -0.5rem;
 }
@@ -112,6 +131,16 @@ iframe{
     50% {
         box-shadow: 0px 0px 0px 5px rgb(232, 77, 77);
     background-color: rgb(245, 130, 130);
+    }
+}
+@keyframes slide-in {
+    0% {
+        opacity: 0;
+        transform: translateY(5rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0rem);
     }
 }
 div.cooming {

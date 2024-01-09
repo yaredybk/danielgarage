@@ -41,7 +41,8 @@
                 <br>
                 <p>
                     Please be informed of our relocation. <a href="https://danielgarage.com.et">Our garage</a> is now
-                    operating from a compound on the <b>road towards Wesen </b>, few blocks in front of <b>Kotebe 02 Health Center</b>.<br>
+                    operating from a compound on the <b>road towards Wesen </b>, few blocks in front of <b>Kotebe 02
+                        Health Center</b>.<br>
                     <br>
                 </p>
                 <center>
@@ -50,13 +51,28 @@
                 <h2>for more:</h2>
                 <ul>
                     <li>
-                        <a href="tel:+251931404545">+251931404545</a>
+                        <a href="tel:+251931404545">
+                            <img class="icon" src="./images/phone.svg" alt="call">
+                            +251931404545</a>
+                            <button onclick="copyMe('+251931404545')" id="+251931404545" class="copy">copy</button>
+                        </li>
+                        <li>
+                            <a href="tel:+251939494020">
+                                <img class="icon" src="./images/phone.svg" alt="call">
+                                +251939494020</a>
+                        <button onclick="copyMe('+251939494020')" id="+251939494020" class="copy">copy</button>
                     </li>
                     <li>
-                        <a href="tel:+251939494020">+251939494020</a>
+                        <a href="https://danielgarage.com.et">
+                            <img class="icon" src="./images/web.webp" alt="visit">
+                            danielgarage.com.et </a>
+                        <button onclick="copyMe('https://danielgarage.com.et')" id="https://danielgarage.com.et" class="copy">copy</button>
                     </li>
                     <li>
-                        <a href="http://danielgarage.com.et"> danielgarage.com.et </a>
+                        <a href="https://t.me/daniautomotive">
+                            <img class="icon" src="./images/tg.webp" alt="check">
+                            t.me/daniautomotive </a>
+                        <button onclick="copyMe('https://t.me/daniautomotive')" id="https://t.me/daniautomotive" class="copy">copy</button>
                     </li>
                 </ul>
                 <h2>location:</h2>
@@ -75,14 +91,34 @@
 
                 </span>
             </div>
-            <div class="close">
                 <button id="close-btn">
                     Ok
                 </button>
-            </div>
         </dialog>
     </div>
     <script>
+        function copyMe(val) {
+            const btn = document.getElementById(val);
+            if (navigator.clipboard)
+                navigator.clipboard.writeText(val)
+                    .then(() => {
+                        btn.innerText = "copied!";
+                    }).catch((err) => {
+                        btn.innerText = "error!"
+                    }).finally(() => {
+                        setTimeout(() => {
+                            btn.innerText = "copy";
+                        }, 3000);
+                    })
+            else {
+                btn.innerText = "error!"
+                setTimeout(() => {
+                    btn.innerText("copy");
+                }, 3000);
+
+            }
+
+        }
         window.addEventListener('DOMContentLoaded', () => {
             const notification = document.querySelector('#notification-btn');
             const dialog = document.querySelector('#notification-dialog');
@@ -121,7 +157,9 @@
             notification.addEventListener('click', () => {
                 openmodal();
             })
-            openmodal();
+            setTimeout(() => {
+                openmodal();
+            }, 2000);
         })
     </script>
 </body>
