@@ -100,9 +100,15 @@
 
                 </span>
             </div>
-            <button id="close-btn">
-                Ok
-            </button>
+            <span id="close">
+                <button onclick="shareInfo()">
+                    <img class="icon large" src="./images/share.svg" alt="share">
+                    Share
+                </button>
+                <button id="close-btn">
+                    Ok
+                </button>
+            </span>
         </dialog>
     </div>
     <script>
@@ -127,6 +133,35 @@
 
             }
 
+        }
+        function shareInfo() {
+            const data = {
+                title: "daniel garage",
+                text: "የአድራሻ ለውጥ (Address change) !\n" +
+                    "ዳኔኤል ጋራዥ ከነበርንበት ወደ ወሰን በሚወስደው መንገድ ኮተቤ 02 ጤና ጣቢያ ፊት ለፊት ባለው ኮምፓውንድ ውስጥ የገባን መሆናችንን እንገልፃለን።\n\n" +
+                    +"Please be informed of our relocation. Daniel garage is now operating from a compound on the road towards Wesen , few blocks in front of Kotebe 02 Health Center."
+                    + "for more:\n"
+                    + "call : +251931404545\n"
+                    + "call : +251939494020\n"
+                    + "visit: danielgarage.com.et\n"
+                    + "telegram: t.me/daniautomotive\n"
+                    + "gmail: danielgarage9@gmail.com\n"
+                    + "google maps:\n"
+                    + "https://goo.gl/maps/2kNzdYxzVoZQhRNA6\n",
+                url: "https://danielgarage.com.et"
+            }
+            try {
+                navigator.share(data).catch((err) => {
+                    console.warn(err);
+                    navigator.clipboard.writeText(data.text);
+                    alert("unable to share\ntext has been copied to clipboard")
+                })
+            } catch (err) {
+                console.warn(err);
+                navigator.clipboard.writeText(data.text);
+                alert("unable to share\ntext has been copied to clipboard")
+
+            }
         }
         window.addEventListener('DOMContentLoaded', () => {
             const notification = document.querySelector('#notification-btn');

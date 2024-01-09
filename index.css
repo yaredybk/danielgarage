@@ -86,10 +86,16 @@ dialog p{
     margin: 0rem;
     padding: 0rem;
 }
-dialog button#close-btn{
+span#close{
     position: sticky;
     bottom: 0.2rem;
     float: right;
+    width: fit-content;
+    display: flex;
+    gap: 1rem;
+}
+dialog span#close button{
+    display: flex;
     background-color: rgb(171, 235, 34);
     box-shadow: 0px 0px 10px 1px black;
     color: darkgreen;
@@ -112,9 +118,12 @@ dialog li a{
     display: flex;
 }
 img.icon{
-    width: 1rem;
+    height: 1rem;
     padding: 0px 5px;
     vertical-align: middle;
+}
+img.icon.large{
+    height: 1.5rem;
 }
 div.iframe{
     border:gray 0.2rem solid ;
