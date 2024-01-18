@@ -47,7 +47,7 @@ button.notification:hover{
     background-color: greenyellow;
 }
 dialog{
-    max-width: 85vw;
+    max-width: 95vw;
     padding: 0.5rem;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
@@ -75,16 +75,17 @@ div.title{
 div.message{
     padding-bottom: 2rem;
 }
-dialog img{
-    margin:  auto 0px;
-    max-width: 30rem;
-    max-height: 50vh;
-}
 dialog p{
-    max-width: 30rem;
+    max-width: 40rem;
     text-align: justify;
     margin: 0rem;
     padding: 0rem;
+}
+dialog img.message{
+    margin:  auto 0px;
+    min-height: 10rem;
+    height: 50vh;
+    max-height: 30rem;
 }
 span#close{
     position: sticky;
